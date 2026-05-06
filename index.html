@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Darkflow Systems | Websites, Security & Smart Tech</title>
+  <meta name="description" content="Darkflow Systems builds websites, secures networks, monitors systems, repairs devices, and installs smart technology for businesses and individuals." />
+  <style>
+    :root {
+      --bg: #070b16;
+      --bg-2: #0d1426;
+      --card: rgba(255,255,255,0.075);
+      --card-strong: rgba(255,255,255,0.12);
+      --text: #f5f7fb;
+      --muted: #aeb9cf;
+      --line: rgba(255,255,255,0.15);
+      --blue: #72d7ff;
+      --violet: #9b7cff;
+      --green: #70f0b7;
+      --gold: #ffd36d;
+      --danger: #ff6f91;
+      --shadow: 0 24px 80px rgba(0,0,0,0.38);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(114, 215, 255, 0.18), transparent 34%),
+        radial-gradient(circle at 85% 15%, rgba(155, 124, 255, 0.18), transparent 35%),
+        radial-gradient(circle at 70% 90%, rgba(112, 240, 183, 0.10), transparent 30%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        radial-gradient(#ffffff 0.7px, transparent 0.7px),
+        radial-gradient(#72d7ff 0.6px, transparent 0.6px);
+      background-size: 70px 70px, 110px 110px;
+      background-position: 0 0, 30px 40px;
+      opacity: 0.18;
+      mask-image: linear-gradient(to bottom, black, transparent 88%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1160px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(7,11,22,0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 70% 30%, white 0 3px, transparent 4px),
+        linear-gradient(135deg, var(--blue), var(--violet));
+      box-shadow: 0 0 28px rgba(114,215,255,0.42);
+      position: relative;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(255,255,255,0.7);
+      border-radius: 50%;
+      left: 12px;
+      top: 12px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.08);
+      color: var(--text);
+      font-weight: 700;
+      transition: 0.2s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    }
+
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,0.13); }
+
+    .btn.primary {
+      border: 0;
+      color: #06101d;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+    }
+
+    .hero {
+      padding: 88px 0 56px;
+      position: relative;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    h1 {
+      margin: 22px 0 16px;
+      font-size: clamp(2.7rem, 7vw, 5.8rem);
+      line-height: 0.94;
+      letter-spacing: -0.07em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #fff, var(--blue), var(--violet));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .orb-card {
+      min-height: 470px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.11), rgba(255,255,255,0.045));
+      box-shadow: var(--shadow);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .orb {
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      margin: 36px auto 24px;
+      background:
+        radial-gradient(circle at 35% 30%, #fff, transparent 13%),
+        radial-gradient(circle at 65% 65%, rgba(112,240,183,0.7), transparent 16%),
+        radial-gradient(circle at 50% 50%, var(--blue), var(--violet));
+      box-shadow: 0 0 90px rgba(114,215,255,0.33), inset 0 0 55px rgba(255,255,255,0.22);
+      position: relative;
+    }
+
+    .orb::before, .orb::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 50%;
+      inset: -34px 20px;
+      transform: rotate(-18deg);
+    }
+
+    .orb::after {
+      inset: 20px -34px;
+      transform: rotate(28deg);
+      border-color: rgba(114,215,255,0.4);
+    }
+
+    .status-grid {
+      display: grid;
+      gap: 12px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(0,0,0,0.18);
+      color: var(--muted);
+    }
+
+    .status strong { color: var(--text); }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 18px var(--green);
+    }
+
+    section { padding: 70px 0; }
+
+    .section-title {
+      max-width: 760px;
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      margin: 0 0 14px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.06rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--card);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+      min-height: 240px;
+      transition: 0.2s ease;
+    }
+
+    .card:hover { transform: translateY(-4px); background: var(--card-strong); }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background: rgba(114,215,255,0.14);
+      border: 1px solid rgba(114,215,255,0.24);
+      font-size: 1.35rem;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .card ul {
+      padding-left: 18px;
+      margin: 12px 0 0;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.045));
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .service-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.14);
+    }
+
+    .service-row b { display: block; margin-bottom: 4px; }
+    .service-row span { color: var(--muted); line-height: 1.55; }
+
+    .check {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      background: rgba(112,240,183,0.15);
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      counter-reset: step;
+    }
+
+    .step {
+      padding: 22px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.065);
+      position: relative;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: "0" counter(step);
+      display: inline-flex;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+    }
+
+    .step h3 { margin: 0 0 8px; }
+    .step p { color: var(--muted); line-height: 1.6; }
+
+    .cta {
+      padding: 44px;
+      border-radius: 34px;
+      background:
+        linear-gradient(135deg, rgba(114,215,255,0.2), rgba(155,124,255,0.18)),
+        rgba(255,255,255,0.07);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: -0.055em;
+      margin: 0 0 12px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 0 auto 26px;
+    }
+
+    footer {
+      padding: 36px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .tagline { color: var(--blue); font-weight: 800; }
+
+    @media (max-width: 900px) {
+      .hero-grid, .split { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      .process { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .hero { padding-top: 58px; }
+    }
+
+    @media (max-width: 620px) {
+      .cards, .process { grid-template-columns: 1fr; }
+      .orb-card { min-height: auto; }
+      .orb { width: 210px; height: 210px; }
+      .cta { padding: 30px 20px; }
+      .hero-actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top" aria-label="Darkflow Systems home">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Darkflow Systems</span>
+      </a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#security">Security</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn primary" href="#contact">Book a consult</a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">✦ Websites · Security · Repairs · Smart Tech</span>
+          <h1>Technology support for the <span class="gradient-text">signals that matter.</span></h1>
+          <p>
+            Darkflow Systems helps small businesses, growing teams, and local customers build better websites,
+            secure their networks, repair devices, monitor systems, and install smart technology without the corporate fog machine.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#services">Explore services</a>
+            <a class="btn" href="#contact">Request help</a>
+          </div>
+        </div>
+
+        <aside class="orb-card" aria-label="Service status panel">
+          <div class="orb" aria-hidden="true"></div>
+          <div class="status-grid">
+            <div class="status"><strong>Website Build</strong><span><span class="dot"></span></span></div>
+            <div class="status"><strong>Network Security</strong><span>Monitoring Ready</span></div>
+            <div class="status"><strong>Device Repair</strong><span>PC · Mobile</span></div>
+            <div class="status"><strong>Smart Installs</strong><span>Homes · Offices</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-title">
+          <h2>Practical tech services with a security-first backbone.</h2>
+          <p>
+            One place for the essentials: your public website, your private network, your devices, your cameras,
+            your smart tools, and the little problems that usually become expensive at the worst possible time.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="icon">🌐</div>
+            <h3>Website Design & Builds</h3>
+            <p>Clean, mobile-ready websites for local companies, service businesses, creators, and professionals.</p>
+            <ul>
+              <li>Landing pages and full sites</li>
+              <li>SEO basics and local presence</li>
+              <li>Forms, booking links, menus, galleries</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon">🛡️</div>
+            <h3>Cybersecurity & Network Security</h3>
+            <p>Security checks, safer setups, monitoring, and practical hardening for homes and businesses.</p>
+            <ul>
+              <li>WiFi and router security</li>
+              <li>Firewall and access review</li>
+              <li>Threat monitoring and alerts</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon">🔎</div>
+            <h3>Pen Testing & OPSEC</h3>
+            <p>Authorized testing and privacy-minded guidance to uncover weak spots before attackers do.</p>
+            <ul>
+              <li>Website and network testing</li>
+              <li>Account and device hygiene</li>
+              <li>Privacy and exposure reduction</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon">💻</div>
+            <h3>PC & Mobile Repair</h3>
+            <p>Troubleshooting, cleanup, setup, recovery guidance, upgrades, and everyday device rescue.</p>
+            <ul>
+              <li>Slow computer cleanup</li>
+              <li>Software and account setup</li>
+              <li>Backup and migration help</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon">🏠</div>
+            <h3>Smart Home & Device Installations</h3>
+            <p>Smart cameras, sensors, lights, assistants, doorbells, hubs, and office devices installed properly.</p>
+            <ul>
+              <li>Smart camera setup</li>
+              <li>WiFi coverage planning</li>
+              <li>Device linking and training</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="icon">📡</div>
+            <h3>Monitoring & Maintenance</h3>
+            <p>Keep systems healthy with routine checks, updates, alerts, and security-conscious maintenance.</p>
+            <ul>
+              <li>Monthly service plans</li>
+              <li>Patch and update checks</li>
+              <li>Incident response support</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="security">
+      <div class="container split">
+        <div class="panel">
+          <div class="section-title">
+            <h2>Finding signals in the noise.</h2>
+            <p>
+              Cybersecurity is anomaly hunting. Strange traffic, exposed devices, weak passwords, forgotten updates,
+              suspicious logins, and quiet misconfigurations all leave signals. We help you find them before they become emergencies.
+            </p>
+          </div>
+          <a class="btn primary" href="#contact">Start with a security review</a>
+        </div>
+
+        <div class="panel service-list">
+          <div class="service-row">
+            <div class="check">✓</div>
+            <div><b>For small businesses</b><span>Websites, secure WiFi, workstations, backups, devices, cameras, and monthly maintenance.</span></div>
+          </div>
+          <div class="service-row">
+            <div class="check">✓</div>
+            <div><b>For larger organizations</b><span>Network assessment, authorized testing, monitoring plans, documentation, and remediation support.</span></div>
+          </div>
+          <div class="service-row">
+            <div class="check">✓</div>
+            <div><b>For individuals</b><span>Computer repair, phone help, privacy cleanup, smart home setup, account security, and safer browsing.</span></div>
+          </div>
+          <div class="service-row">
+            <div class="check">✓</div>
+            <div><b>For local teams</b><span>Fast, friendly support without vendor confusion, inflated jargon, or one-size-fits-all packages.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-title">
+          <h2>A simple process, not a tech labyrinth.</h2>
+          <p>Whether it is a new website, a locked-down network, or a smart camera install, we keep the work clear and documented.</p>
+        </div>
+
+        <div class="process">
+          <div class="step">
+            <h3>Discovery</h3>
+            <p>We learn what you need, what is broken, what matters, and what budget makes sense.</p>
+          </div>
+          <div class="step">
+            <h3>Assessment</h3>
+            <p>We review your current site, network, devices, accounts, or installation environment.</p>
+          </div>
+          <div class="step">
+            <h3>Build & Secure</h3>
+            <p>We design, repair, configure, install, test, harden, and explain what changed.</p>
+          </div>
+          <div class="step">
+            <h3>Support</h3>
+            <p>We offer follow-up, monitoring, maintenance, and future improvements as your needs grow.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta">
+          <h2>Ready to make your tech feel less haunted?</h2>
+          <p>
+            Tell us what you need: a website, security review, network setup, device repair, smart installation,
+            or ongoing monitoring. We will help turn the blinking-light chaos into a clean plan.
+          </p>
+          <a class="btn primary" href="mailto:hello@darkflowsystems.com?subject=Consultation%20Request%20-%20Darkflow%20Systems">Email Darkflow Systems</a>
+          <a class="btn" href="tel:+15555555555">Call / Text</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong>Darkflow Systems</strong><br />
+        <span class="tagline">Finding Signals in the Noise.</span>
+      </div>
+      <div>Websites · Cybersecurity · Repairs · Smart Installs · Monitoring</div>
+    </div>
+  </footer>
+</body>
+</html>
