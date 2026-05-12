@@ -427,6 +427,10 @@
 
     .tagline { color: var(--blue); font-weight: 800; }
 
+    .id01 {
+
+    }
+
     @media (max-width: 900px) {
       .hero-grid, .split { grid-template-columns: 1fr; }
       .cards { grid-template-columns: 1fr 1fr; }
